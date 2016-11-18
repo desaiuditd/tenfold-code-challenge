@@ -146,6 +146,30 @@ module.exports.arrayDiffToHtmlTable = function( prevArray, currArray) {
     diffArray.push(diff);
   }
 
+  for(var i = 0; i < prevFlatArray.length; i++) {
+    var curr = _.findWhere(currFlatArray, {'_id': prevFlatArray[i]._id});
+
+    // object is removed totally.
+    if (curr === undefined) {
+      var diff = {
+        _id: '<b>' + prevFlatArray[i]._id + '</b>'
+      };
+
+      // cover all the keys
+      for(var j = 0; j < keySuperSet.length; j++) {
+
+        // ignore _id field
+        if (keySuperSet[j] == '_id') continue;
+
+        diff[keySuperSet[j]] = '<b>DELETED</b>';
+      }
+
+      diffArray.push(diff);
+    }
+  }
+
+  diffArray = _.sortBy(diffArray, '_id');
+
   // Initate Table Generation
   var htmlMarkup = '<table>';
 
