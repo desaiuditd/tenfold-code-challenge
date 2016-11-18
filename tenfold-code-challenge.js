@@ -146,6 +146,8 @@ module.exports.arrayDiffToHtmlTable = function( prevArray, currArray) {
     diffArray.push(diff);
   }
 
+
+  // take care of DELETED objects
   for(var i = 0; i < prevFlatArray.length; i++) {
     var curr = _.findWhere(currFlatArray, {'_id': prevFlatArray[i]._id});
 
@@ -168,6 +170,7 @@ module.exports.arrayDiffToHtmlTable = function( prevArray, currArray) {
     }
   }
 
+  // sort the array based on _id
   diffArray = _.sortBy(diffArray, '_id');
 
   // Initate Table Generation
