@@ -1,0 +1,12 @@
+{
+  "name": "tenfold-code-challenge",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "flat": "^2.0.1",
+    "underscore": "1.8.3"
+  }
+}
